@@ -12,29 +12,13 @@ export default class QuillEditor extends React.Component {
   constructor(props) {
     super(props);
     this.editor = React.createRef();
-    this.state = {
-      _options: {},
-      defaultOptions
-    };
+    this._options = {};
     this.getStyle = this.getStyle.bind(this);
     this.setContent = this.setContent.bind(this);
+    this.initQuill = this.initQuill.bind(this);
   }
   componentDidMount() {
-    this.setState(
-      {
-        _options: Object.assign(
-          {},
-          this.state.defaultOptions,
-          this.props.globalOptions,
-          this.props.options ? this.props.options : {}
-        )
-      },
-      () => {
-        this.quill = new Quill(this.editor.current, this.state._options);
-        this.setContent(this.props.content);
-        this.quill.enable(!this.props.disabled);
-      }
-    );
+    this.initQuill();
   }
   componentWillReceiveProps(nextProps, nextContext) {
     if (this.props.disabled !== nextProps.disabled) {
@@ -44,7 +28,14 @@ export default class QuillEditor extends React.Component {
       this.setContent(nextProps.content);
     }
   }
-
+  initQuill() {
+    if (this.editor.current) {
+      this._options = Object.assign({}, defaultOptions, this.props.options);
+      this.quill = new Quill(this.editor.current, this._options);
+      this.setContent(this.props.content);
+      this.quill.enable(!this.props.disabled);
+    }
+  }
   getStyle() {
     let styleObj = {};
     let { width, height } = this.props;
@@ -81,6 +72,5 @@ QuillEditor.defaultProps = {
   disabled: false,
   width: "100%",
   height: "300px",
-  options: () => ({}),
-  globalOptions: () => ({})
+  options: {}
 };
