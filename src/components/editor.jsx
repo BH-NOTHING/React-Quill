@@ -16,6 +16,8 @@ export default class QuillEditor extends React.Component {
     this.getStyle = this.getStyle.bind(this);
     this.setContent = this.setContent.bind(this);
     this.initQuill = this.initQuill.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
   componentDidMount() {
     this.initQuill();
@@ -28,12 +30,23 @@ export default class QuillEditor extends React.Component {
       this.setContent(nextProps.content);
     }
   }
+  componentWillUnmount() {
+    if (this.editor.current) {
+      let root = this.quill.root;
+      root.removeEventListener("blur", this.onBlur);
+      root.removeEventListener("focus", this.onFocus);
+    }
+  }
+
   initQuill() {
     if (this.editor.current) {
       this._options = Object.assign({}, defaultOptions, this.props.options);
       this.quill = new Quill(this.editor.current, this._options);
       this.setContent(this.props.content);
       this.quill.enable(!this.props.disabled);
+      let root = this.quill.root;
+      root.addEventListener("blur", this.onBlur, false);
+      root.addEventListener("focus", this.onFocus, false);
     }
   }
   getStyle() {
@@ -58,7 +71,12 @@ export default class QuillEditor extends React.Component {
       this.quill.setText(contentProp);
     }
   }
-
+  onFocus() {
+    this.props.onFocus && this.props.onFocus(this.quill);
+  }
+  onBlur() {
+    this.props.onBlur && this.props.onBlur(this.quill);
+  }
   render() {
     return <div style={this.getStyle()} ref={this.editor} />;
   }
