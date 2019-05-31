@@ -9,16 +9,21 @@ class App extends Component {
     this.blur = this.blur.bind(this);
   }
   focus(quill) {
-    console.log(quill);
+    // console.log(quill);
   }
   blur(quill){
-    console.log(quill);
+    // console.log(quill);
+  }
+  textChange(delta, oldDelta, source){
+     console.log(delta)
+     console.log(oldDelta)
+     console.log(source)
   }
   render() {
     return (
       <div className="App">
         {/*<QuillReact content='[{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"}]'></QuillReact>*/}
-        <QuillReact content="fadsasd" onFocus={this.focus} onBlur={this.blur} />
+        <QuillReact content="fadsasd" onFocus={this.focus} onBlur={this.blur} onTextChange={this.textChange} />
       </div>
     );
   }
