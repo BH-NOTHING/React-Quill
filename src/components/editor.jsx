@@ -2,9 +2,6 @@ import React from "react";
 import _Quill from "quill";
 import PropTypes from "prop-types";
 import defaultOptions from "./options";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
 
 const Quill = window.Quill || _Quill;
 
