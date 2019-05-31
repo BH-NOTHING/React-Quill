@@ -40,13 +40,15 @@ export default class QuillEditor extends React.Component {
 
   initQuill() {
     if (this.editor.current) {
-      this._options = Object.assign({}, defaultOptions, this.props.options);
-      this.quill = new Quill(this.editor.current, this._options);
-      this.setContent(this.props.content);
-      this.quill.enable(!this.props.disabled);
-      let root = this.quill.root;
-      root.addEventListener("blur", this.onBlur, false);
-      root.addEventListener("focus", this.onFocus, false);
+      setTimeout(()=>{
+        this._options = Object.assign({}, defaultOptions, this.props.options);
+        this.quill = new Quill(this.editor.current, this._options);
+        this.setContent(this.props.content);
+        this.quill.enable(!this.props.disabled);
+        let root = this.quill.root;
+        root.addEventListener("blur", this.onBlur, false);
+        root.addEventListener("focus", this.onFocus, false);
+      },0)
     }
   }
   getStyle() {
