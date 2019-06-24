@@ -19,11 +19,17 @@ class App extends Component {
      console.log(oldDelta)
      console.log(source)
   }
+  selectChange(range, oldRange, source){
+     console.log(111)
+  }
+    onReady(quill){
+      console.log(quill)
+    }
   render() {
     return (
       <div className="App">
         {/*<QuillReact content='[{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"}]'></QuillReact>*/}
-        <QuillReact content="fadsasd" onFocus={this.focus} onBlur={this.blur} onTextChange={this.textChange} />
+        <QuillReact content="fadsasd" onFocus={this.focus} onBlur={this.blur} onTextChange={this.textChange} onSelectChange={this.selectChange} onReady={this.onReady}/>
       </div>
     );
   }
