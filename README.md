@@ -1,7 +1,7 @@
-props
+props:
 1. content -- 编辑器内容
 
-events
+events:
 
 1. onFocus -- 聚焦事件
 2. onBlur -- 失焦事件
