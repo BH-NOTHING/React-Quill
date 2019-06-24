@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         {/*<QuillReact content='[{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasd"},{"insert":"\n"},{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasdasd"},{"insert":"\n"}]'></QuillReact>*/}
-        <QuillReact content="fadsasd" onFocus={this.focus} onBlur={this.blur} onTextChange={this.textChange} onSelectChange={this.selectChange} onReady={this.onReady}/>
+        <QuillReact content='[{"attributes":{"color":"#595959","size":"14px","lineheight":"2rem"},"insert":"asdasdasda啊"},{"attributes":{"size":"14px","color":"#595959","lineheight":"2rem","background":"#ff0000"},"insert":"是大啊是大啊是大"},{"insert":"\n"}]' onFocus={this.focus} onBlur={this.blur} onTextChange={this.textChange} onSelectChange={this.selectChange} onReady={this.onReady}/>
       </div>
     );
   }

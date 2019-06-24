@@ -37,35 +37,33 @@ export default class QuillEditor extends React.Component {
 
   initQuill() {
     if (this.editor.current) {
-      setTimeout(() => {
-        this._options = Object.assign({}, defaultOptions, this.props.options);
-        if(this.props.theme){
-          this._options.theme = this.props.theme
-        }
-        this.quill = new Quill(this.editor.current, this._options);
-        this.setContent(this.props.content);
-        this.quill.enable(!this.props.disabled);
-        let root = this.quill.root;
-        if(this.props.onTextChange){
-          this.quill.on("text-change", (delta, oldDelta, source) => {
-            this.props.onTextChange(delta, oldDelta, source);
-          });
-        }
-        if(this.props.onSelectChange){
-          this.quill.on("selection-change", (range, oldRange, source) => {
-            this.props.onSelectChange(range, oldRange, source);
-          });
-        }
-        if (this.props.onReady) {
-          this.props.onReady(this.quill)
-        }
-        if(this.props.onBlur){
-          root.addEventListener("blur", this.onBlur, false);
-        }
-        if(this.props.onFocus){
-          root.addEventListener("focus", this.onFocus, false);
-        }
-      }, 0);
+      this._options = Object.assign({}, defaultOptions, this.props.options);
+      if(this.props.theme){
+        this._options.theme = this.props.theme
+      }
+      this.quill = new Quill(this.editor.current, this._options);
+      this.setContent(this.props.content);
+      this.quill.enable(!this.props.disabled);
+      let root = this.quill.root;
+      if(this.props.onTextChange){
+        this.quill.on("text-change", (delta, oldDelta, source) => {
+          this.props.onTextChange(delta, oldDelta, source);
+        });
+      }
+      if(this.props.onSelectChange){
+        this.quill.on("selection-change", (range, oldRange, source) => {
+          this.props.onSelectChange(range, oldRange, source);
+        });
+      }
+      if (this.props.onReady) {
+        this.props.onReady(this.quill)
+      }
+      if(this.props.onBlur){
+        root.addEventListener("blur", this.onBlur, false);
+      }
+      if(this.props.onFocus){
+        root.addEventListener("focus", this.onFocus, false);
+      }
     }
   }
   getStyle() {
