@@ -49,7 +49,7 @@ Quill.register('modules/yourQuillModule', yourQuillModule)
 
 ### SSR
 
-``` react
+```react
 
 class App extends Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class App extends Component {
     );
   }
 }
-
+```
 ## Modules
 - [quill-image-extend-module](https://github.com/NextBoy/quill-image-extend-module)
 - [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)
